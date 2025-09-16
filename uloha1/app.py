@@ -2,7 +2,7 @@ from string import ascii_lowercase
 alphabet = list(ascii_lowercase)
 
 def load_input_file():
-    with open("input.txt", "r") as f:
+    with open("input.in", "r") as f:
         input_list = [line.strip() for line in f]
         input_list.pop(0)
     return input_list
