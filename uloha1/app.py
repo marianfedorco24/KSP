@@ -1,17 +1,10 @@
 from string import ascii_lowercase
 alphabet = list(ascii_lowercase)
 
-
-test = """5
-tdipwbntftqplmbefnqpewpev
-pqfsbdflvmpwzcmftlnvafabdju
-ajusbcveftmvofdopnjtuznsblz
-nbsjtftbibpeqsbizbaqplmbeop
-abaobnfoboqplmftnpsbmlz"""
-
-def clean_input(input):
-    input_list = input.split("\n")
-    input_list.pop(0)
+def load_input_file():
+    with open("input.txt", "r") as f:
+        input_list = [line.strip() for line in f]
+        input_list.pop(0)
     return input_list
 
 def find_index_new(letter):
@@ -27,8 +20,8 @@ def rewrite_row(row):
         rewritten_row += new_letter
     return rewritten_row
 
-def main(input):
-    input_clean = clean_input(input)
+def main():
+    input_clean = load_input_file()
     for row in input_clean:
         rewritten_row = rewrite_row(row)
         if "poklad" in rewritten_row:
@@ -36,4 +29,4 @@ def main(input):
         else:
             print("NE")
 
-main(test)
+main()
