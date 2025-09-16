@@ -22,11 +22,14 @@ def rewrite_row(row):
 
 def main():
     input_clean = load_input_file()
-    for row in input_clean:
-        rewritten_row = rewrite_row(row)
-        if "poklad" in rewritten_row:
-            print("ANO")
-        else:
-            print("NE")
+    with open("output.txt", "w") as f:
+        for row in input_clean:
+            rewritten_row = rewrite_row(row)
+            if "poklad" in rewritten_row:
+                f.write("ANO\n")
+                print("ANO")
+            else:
+                f.write("NE\n")
+                print("NE")
 
 main()
