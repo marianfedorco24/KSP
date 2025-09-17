@@ -30,7 +30,28 @@ def main():
     data = load_input()
     time = data[0]
     arena = data[1]
+    arena_num = convert_arena_to_num(arena)
     
-    
+    for i in range(time):
+        row_i = 0
+        for row in arena:
+            point_i = 0
+            for point in row:
+                match point:
+                    case "A":
+                        pass
+                    case "V":
+                        pass
+                    case "<":
+                        pass
+                    case ">":
+                        pass
+                    case _:
+                        pass
+
+
+                point_i = 0
+
+            row_i += 1
 
 main()
