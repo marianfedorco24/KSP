@@ -27,7 +27,7 @@ def display_arena(arena):
         print(" ".join(row))
 
 def main():
-    global 
+    global arena, arena_num, time
     for i in range(time):
         row_i = 0
         for row in arena:
