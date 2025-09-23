@@ -27,6 +27,7 @@ def display_arena(arena):
         print(" ".join(row))
 
 def main():
+    global 
     for i in range(time):
         row_i = 0
         for row in arena:
@@ -35,32 +36,48 @@ def main():
                 if type(arena_num[row_i][point_i]) == int:
                     row_i_new = row_i
                     point_i_new = point_i
+                    point_new = ""
                     match point:
                         case "A":
                             row_i_new -= 1
+                            point_new = "<"
                         case "V":
                             row_i_new += 1
+                            point_new = ">"
                         case "<":
                             point_i_new -= 1
+                            point_new = "V"
                         case ">":
                             point_i_new += 1
+                            point_new = "A"
                     
-                    if row_i_new < 0 or row_i_new > len(arena - 1) or point_i_new < 0 or point_i_new > len(arena[0]):
-                        pass
+                    is_out_of_arena = row_i_new < 0 or row_i_new > len(arena) - 1 or point_i_new < 0 or point_i_new > len(arena[0]) - 1
+                    is_wall = arena[row_i_new][point_i_new] == "#"
+
+                    if is_out_of_arena or is_wall:
+                        arena[row_i][point_i] = point_new
+                    elif arena[row_i_new][point_i_new] == ".":
+                        arena[row_i_new][point_i_new] = point
+                        arena_num[row_i_new][point_i_new] = arena_num[row_i][point_i]
+
+                        arena[row_i][point_i] = "."
+                        arena_num[row_i][point_i] = "."
+                    else:
+                        arena[row_i_new][point_i_new] = "A"
+                        arena_num[row_i_new][point_i_new] += arena_num[row_i][point_i]
+
+                        arena[row_i][point_i] = "."
+                        arena_num[row_i][point_i] = "."
 
                 point_i += 1
 
             row_i += 1
+    display_arena(arena)
 
 
 input_loaded = load_input()
 time = input_loaded[0]
 arena = input_loaded[1]
 arena_num = convert_arena_to_num(arena)
-
-display_arena(arena_num)
-print(time)
-
-print(type(arena_num[1][2]))
 
 main()
